@@ -1,0 +1,39 @@
+# BEGIN
+<IfModule mod_deflate.c>
+AddOutputFilterByType DEFLATE text/html
+<FilesMatch "\.(css|js|jpg|png|gif)$">
+SetOutputFilter DEFLATE
+</FilesMatch>
+</IfModule>
+
+FileETag MTime Size
+<ifmodule mod_expires.c>
+  <filesmatch "\.(jpg|ico|gif|png|css|js)$">
+       ExpiresActive on
+       ExpiresDefault "access plus 1 year"
+   </filesmatch>
+</ifmodule>
+
+FileETag None
+
+<IfModule mod_expires.c>
+ExpiresActive On
+ExpiresDefault A0
+ExpiresByType text/javascript A2592000
+ExpiresByType text/css A604800
+ExpiresByType image/x-icon A2592000
+ExpiresByType image/gif A2592000
+ExpiresByType image/png A2592000
+ExpiresByType image/jpeg A2592000
+ExpiresByType text/plain A86400
+ExpiresByType application/x-shockwave-flash A2592000
+ExpiresByType video/x-flv A2592000
+ExpiresByType application/pdf A2592000
+ExpiresByType text/html A0
+</IfModule>
+
+RewriteEngine on
+ RewriteCond %{HTTP_HOST} ^esquadriaselegance.com.br
+ RewriteRule ^(.*)$ http://www.esquadriaselegance.com.br/$1 [R=permanent,L]
+
+ErrorDocument 404 /404.html
